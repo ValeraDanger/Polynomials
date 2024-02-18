@@ -1,4 +1,4 @@
-#include <unordered_map>
+п»ї#include <unordered_map>
 #include <string>
 #include <stdexcept>
 #include <iostream>
@@ -6,36 +6,36 @@
 
 class Monom {
 public:
-    double coefficient; // коэффициент монома
-    std::unordered_map<char, int> variables; // переменные монома и их степени
+    double coefficient; // РєРѕСЌС„С„РёС†РёРµРЅС‚ РјРѕРЅРѕРјР°
+    std::unordered_map<char, int> variables; // РїРµСЂРµРјРµРЅРЅС‹Рµ РјРѕРЅРѕРјР° Рё РёС… СЃС‚РµРїРµРЅРё
 
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     Monom(double coefficient, const std::unordered_map<char, int>& variables) : coefficient(coefficient), variables(variables) { }
 
-    // Конструктор по умолчанию
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
     Monom() : coefficient(0), variables({}) {}
 
-    // Оператор сложения
+    // РћРїРµСЂР°С‚РѕСЂ СЃР»РѕР¶РµРЅРёСЏ
     Monom operator+(const Monom& other) {
         if (this->variables == other.variables) {
             return Monom(this->coefficient + other.coefficient, this->variables);
         }
         else {
-            throw std::invalid_argument("Мономы имеют разные переменные и не могут быть сложены.");
+            throw std::invalid_argument("РњРѕРЅРѕРјС‹ РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ Рё РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ СЃР»РѕР¶РµРЅС‹.");
         }
     }
 
-    // Оператор вычитания
+    // РћРїРµСЂР°С‚РѕСЂ РІС‹С‡РёС‚Р°РЅРёСЏ
     Monom operator-(const Monom& other) {
         if (this->variables == other.variables) {
             return Monom(this->coefficient - other.coefficient, this->variables);
         }
         else {
-            throw std::invalid_argument("Мономы имеют разные переменные и не могут быть вычтены.");
+            throw std::invalid_argument("РњРѕРЅРѕРјС‹ РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ Рё РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РІС‹С‡С‚РµРЅС‹.");
         }
     }
 
-    // Оператор вывода
+    // РћРїРµСЂР°С‚РѕСЂ РІС‹РІРѕРґР°
     friend std::ostream& operator<<(std::ostream& os, const Monom& monom) {
         os << monom.coefficient;
         for (const auto& var : monom.variables) {
@@ -44,7 +44,7 @@ public:
         return os;
     }
 
-    // Оператор ввода
+    // РћРїРµСЂР°С‚РѕСЂ РІРІРѕРґР°
     friend std::istream& operator>>(std::istream& is, Monom& monom) {
         std::string str;
         is >> str;

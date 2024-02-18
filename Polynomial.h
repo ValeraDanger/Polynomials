@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <stdexcept>
 #include <unordered_map>
@@ -10,12 +10,12 @@
 
 class Polynomial {
 public:
-    std::list<Monom> monoms; // список мономов
+    std::list<Monom> monoms; // СЃРїРёСЃРѕРє РјРѕРЅРѕРјРѕРІ
 
-    // Конструктор по умолчанию
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
     Polynomial() : monoms({}) {}
 
-    // Метод для добавления монома
+    // РњРµС‚РѕРґ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РјРѕРЅРѕРјР°
     void push(const Monom& monom) {
         for (auto it = monoms.begin(); it != monoms.end(); ++it) {
             if (it->variables == monom.variables) {
@@ -32,7 +32,7 @@ public:
     }
 
 
-    // Метод для проверки корректности входной строки
+    // РњРµС‚РѕРґ РґР»СЏ РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІС…РѕРґРЅРѕР№ СЃС‚СЂРѕРєРё
     bool isValidInput(const std::string& str) {
         for (char c : str) {
             if (!std::isdigit(c) && c != '+' && c != '-' && c != '*' && c != '^' && !std::isalpha(c)) {
@@ -42,7 +42,7 @@ public:
         return true;
     }
 
-    // Оператор сложения
+    // РћРїРµСЂР°С‚РѕСЂ СЃР»РѕР¶РµРЅРёСЏ
     Polynomial operator+(const Polynomial& other) {
         Polynomial result = *this;
         for (const auto& monom : other.monoms) {
@@ -51,7 +51,7 @@ public:
         return result;
     }
 
-    // Оператор вычитания
+    // РћРїРµСЂР°С‚РѕСЂ РІС‹С‡РёС‚Р°РЅРёСЏ
     Polynomial operator-(const Polynomial& other) {
         Polynomial result = *this;
         for (auto& monom : other.monoms) {
@@ -62,7 +62,7 @@ public:
         return result;
     }
 
-    // Оператор вывода
+    // РћРїРµСЂР°С‚РѕСЂ РІС‹РІРѕРґР°
     friend std::ostream& operator<<(std::ostream& os, const Polynomial& polynomial) {
         for (std::list<Monom>::const_iterator it = polynomial.monoms.begin(); it != polynomial.monoms.end(); ++it) {
             if (it != polynomial.monoms.begin()) {
@@ -73,12 +73,12 @@ public:
         return os;
     }
 
-     // Оператор ввода
+     // РћРїРµСЂР°С‚РѕСЂ РІРІРѕРґР°
     friend std::istream& operator>>(std::istream& is, Polynomial& polynomial) {
         std::string str;
         is >> str;
         if (!polynomial.isValidInput(str)) {
-            throw std::invalid_argument("Некорректный ввод");
+            throw std::invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ");
         }
 
         std::string monom_str = "";
