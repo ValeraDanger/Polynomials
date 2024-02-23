@@ -24,6 +24,39 @@ int main() {
     cin >> p2;
 
     //cout << m1 << '\n' << m2 << '\n' << endl;
-    cout << p1 + p2 << endl;
-    cout << p1 - p2 << endl;
+    Polynomial sum = p1 + p2;
+    Polynomial dif = p1 - p2;
+
+    cout << sum << endl;
+    cout << dif << endl;
 }
+
+
+
+
+
+//#include "List.h"
+//#include <iostream>
+//
+//int main() {
+//	List<int> a;
+//
+//	a.push_back(1);
+//	a.push_back(2);
+//	a.push_back(3);
+//	a.push_back(4);
+//	a.push_back(5);
+//
+//	auto it = a.begin();
+//	++it;
+//	a.erase(it);
+//
+//	//for (auto it = a.begin(); it != a.end(); ++it) {
+//	//	std::cout << *it << std::endl;
+//	//}
+//
+//	for (auto el : a) {
+//		std::cout << el << std::endl;
+//	}
+//}
+

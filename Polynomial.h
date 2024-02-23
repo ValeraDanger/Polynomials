@@ -4,29 +4,33 @@
 #include <unordered_map>
 #include <string>
 #include <iostream>
-#include <list>
+//#include <list>
+#include "List.h"
 #include <sstream>
 #include "Monom.h"
 
 class Polynomial {
 public:
-    std::list<Monom> monoms; // список мономов
+    //std::list<Monom> monoms; // список мономов
+    List<Monom> monoms;
 
     // Конструктор по умолчанию
-    Polynomial() : monoms({}) {}
+    Polynomial() {}
 
     // Метод для добавления монома
     void push(const Monom& monom) {
+        bool added = false;
         for (auto it = monoms.begin(); it != monoms.end(); ++it) {
             if (it->variables == monom.variables) {
                 it->coefficient += monom.coefficient;
                 if (it->coefficient == 0) {
                     monoms.erase(it);
                 }
-                return;
+                added = true;
+                break;
             }
         }
-        if (monom.coefficient != 0) {
+        if (!added && monom.coefficient != 0) {
             monoms.push_back(monom);
         }
     }
@@ -42,33 +46,36 @@ public:
         return true;
     }
 
-    // Оператор сложения
-    Polynomial operator+(const Polynomial& other) {
+    // Оператор сложения (для наглядности без изменений)
+    Polynomial operator+(Polynomial& other) {
         Polynomial result = *this;
-        for (const auto& monom : other.monoms) {
-            result.push(monom);
+        for (auto it = other.monoms.begin(); it != other.monoms.end(); ++it) {
+            result.push(*it);
         }
         return result;
     }
 
-    // Оператор вычитания
-    Polynomial operator-(const Polynomial& other) {
+    // Оператор вычитания (для наглядности без изменений)
+    Polynomial operator-(Polynomial& other) {
         Polynomial result = *this;
-        for (auto& monom : other.monoms) {
-            Monom negative_monom(monom);
-            negative_monom.coefficient = -monom.coefficient;
+        for (auto it = other.monoms.begin(); it != other.monoms.end(); ++it) {
+            Monom negative_monom = *it;
+            negative_monom.coefficient = -negative_monom.coefficient;
             result.push(negative_monom);
         }
         return result;
     }
 
     // Оператор вывода
-    friend std::ostream& operator<<(std::ostream& os, const Polynomial& polynomial) {
-        for (std::list<Monom>::const_iterator it = polynomial.monoms.begin(); it != polynomial.monoms.end(); ++it) {
-            if (it != polynomial.monoms.begin()) {
-                os << " + ";
-            }
+    friend std::ostream& operator<<(std::ostream& os, Polynomial& polynomial) {
+        auto it = polynomial.monoms.begin();
+        if (it != polynomial.monoms.end()) {
             os << *it;
+            ++it;
+        }
+        while (it != polynomial.monoms.end()) {
+            os << " + " << *it;
+            ++it;
         }
         return os;
     }
