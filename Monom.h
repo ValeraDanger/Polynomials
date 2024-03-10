@@ -35,6 +35,20 @@ public:
         }
     }
 
+    // Оператор умножения мономов
+    Monom operator*(const Monom& other) const {
+        Monom result = *this; // Начинаем с текущего монома
+        result.coefficient *= other.coefficient; // Умножаем коэффициенты
+
+        // Умножаем переменные, суммируя их степени
+        for (const auto& var : other.variables) {
+            result.variables[var.first] += var.second;
+        }
+
+        return result;
+    }
+
+
     // Оператор вывода
     friend std::ostream& operator<<(std::ostream& os, const Monom& monom) {
         os << monom.coefficient;

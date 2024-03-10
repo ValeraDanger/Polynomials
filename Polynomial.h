@@ -66,6 +66,30 @@ public:
         return result;
     }
 
+    // Оператор умножения полиномов
+    Polynomial operator*(Polynomial& other) {
+        Polynomial result;
+        for (auto it = monoms.begin(); it != monoms.end(); ++it) {
+            for (auto jt = other.monoms.begin(); jt != other.monoms.end(); ++jt) {
+                Monom product = *it * *jt; // Умножаем каждый моном первого полинома на каждый моном второго
+                result.push(product); // Добавляем результат в полином результата
+            }
+        }
+        return result;
+    }
+    
+    // Оператор умножения полинома на константу
+    Polynomial operator*(const double constant) {
+        Polynomial result;
+        for (auto it = monoms.begin(); it != monoms.end(); ++it) {
+            Monom temp = *it;
+            temp.coefficient *= constant; // Умножаем коэффициент каждого монома на константу
+            result.push(temp); // Добавляем измененный моном в результат
+        }
+        return result;
+    }
+
+
     // Оператор вывода
     friend std::ostream& operator<<(std::ostream& os, Polynomial& polynomial) {
         auto it = polynomial.monoms.begin();

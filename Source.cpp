@@ -26,9 +26,13 @@ int main() {
     //cout << m1 << '\n' << m2 << '\n' << endl;
     Polynomial sum = p1 + p2;
     Polynomial dif = p1 - p2;
+    Polynomial mul = p1 * p2;
+    Polynomial const_mul = p1 * 5;
 
     cout << sum << endl;
     cout << dif << endl;
+    cout << mul << endl;
+    cout << const_mul << endl;
 }
 
 

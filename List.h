@@ -1,79 +1,4 @@
-//#pragma once
-//
-//template<typename T>
-//class List {
-//    struct Node {
-//        T data;
-//        Node* next;
-//        Node(const T& data, Node* next = nullptr) : data(data), next(next) {}
-//    };
-//
-//    Node* head;
-//
-//public:
-//    class iterator {
-//        Node* current;
-//    public:
-//        iterator(Node* node) : current(node) {}
-//        iterator& operator++() { current = current->next; return *this; }
-//        T& operator*() { return current->data; }
-//        const T& operator*() const { return current->data; } // Константная версия оператора *
-//        T* operator->() { return &(current->data); }
-//        const T* operator->() const { return &(current->data); } // Константная версия оператора ->
-//        bool operator!=(const iterator& other) { return current != other.current; }
-//
-//        friend class List;
-//    };
-//
-//    List() : head(nullptr) {}
-//    ~List() {
-//        while (head) {
-//            Node* temp = head;
-//            head = head->next;
-//            delete temp;
-//        }
-//    }
-//
-//    void push_back(const T& data) {
-//        if (!head) {
-//            head = new Node(data);
-//        }
-//        else {
-//            Node* current = head;
-//            while (current->next) {
-//                current = current->next;
-//            }
-//            current->next = new Node(data);
-//        }
-//    }
-//
-//    void erase(iterator it) {
-//        if (head == it.current) {
-//            Node* temp = head;
-//            head = head->next;
-//            delete temp;
-//        }
-//        else {
-//            Node* current = head;
-//            while (current && current->next != it.current) {
-//                current = current->next;
-//            }
-//            if (current) {
-//                Node* temp = current->next;
-//                current->next = current->next->next;
-//                delete temp;
-//            }
-//        }
-//    }
-//
-//    iterator begin() { return iterator(head); }
-//    const iterator begin() const { return iterator(head); } // Константная версия метода begin
-//    iterator end() { return iterator(nullptr); }
-//    const iterator end() const { return iterator(nullptr); } // Константная версия метода end
-//};
-
-
-#include <iostream>
+п»ї#include <iostream>
 #include <exception>
 
 template<typename T>
@@ -99,22 +24,22 @@ public:
             return current != other.current;
         }
 
-        // Неконстантная версия оператора разыменования
+        // РќРµРєРѕРЅСЃС‚Р°РЅС‚РЅР°СЏ РІРµСЂСЃРёСЏ РѕРїРµСЂР°С‚РѕСЂР° СЂР°Р·С‹РјРµРЅРѕРІР°РЅРёСЏ
         T& operator*() {
             return current->data;
         }
 
-        // Константная версия оператора разыменования
+        // РљРѕРЅСЃС‚Р°РЅС‚РЅР°СЏ РІРµСЂСЃРёСЏ РѕРїРµСЂР°С‚РѕСЂР° СЂР°Р·С‹РјРµРЅРѕРІР°РЅРёСЏ
         const T& operator*() const {
             return current->data;
         }
 
-        // Неконстантная версия оператора доступа к члену через указатель
+        // РќРµРєРѕРЅСЃС‚Р°РЅС‚РЅР°СЏ РІРµСЂСЃРёСЏ РѕРїРµСЂР°С‚РѕСЂР° РґРѕСЃС‚СѓРїР° Рє С‡Р»РµРЅСѓ С‡РµСЂРµР· СѓРєР°Р·Р°С‚РµР»СЊ
         T* operator->() {
             return &(current->data);
         }
 
-        // Константная версия оператора доступа к члену через указатель
+        // РљРѕРЅСЃС‚Р°РЅС‚РЅР°СЏ РІРµСЂСЃРёСЏ РѕРїРµСЂР°С‚РѕСЂР° РґРѕСЃС‚СѓРїР° Рє С‡Р»РµРЅСѓ С‡РµСЂРµР· СѓРєР°Р·Р°С‚РµР»СЊ
         const T* operator->() const {
             return &(current->data);
         }
